@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <img src="pngwing.com.png" alt="Logo" id="logo">
+        <img src="ot-new-logo-of-formula-e-with-previous-versions-in-the-last-v0-vqqgra64jn2a1-removebg-preview.png" alt="Logo" id="logo">
         <h1>Loja</h1>
         <nav>
             <ul>
@@ -24,25 +24,157 @@
     </header>
 
     <main>
+        <!-- Primeira linha de produtos -->
         <section class="product">
-            <h2>Produto 1</h2>
-            <img src="produto1.jpg" alt="Produto 1">
-            <p>Descrição do Produto 1.</p>
+            <h2>9fifty Repreve</h2>
+            <img src="bone azul.jpg" alt="Produto 1">
+            <p>12.000</p>
             <button>Comprar</button>
         </section>
         <section class="product">
-            <h2>Produto 2</h2>
-            <img src="produto2.jpg" alt="Produto 2">
-            <p>Descrição do Produto 2.</p>
+            <h2>Camo Cap</h2>
+            <img src="bone colorido.jpg" alt="Produto 2">
+            <p>15.000</p>
             <button>Comprar</button>
         </section>
+        <section class="product">
+            <h2>New Era Repreve</h2>
+            <img src="bone preto.jpg" alt="Produto 3">
+            <p>10.500</p>
+            <button>Comprar</button>
+        </section>
+        <section class="product">
+            <h2>Tonal Hoodie</h2>
+            <img src="moletom.jpg" alt="Produto 4">
+            <p>40.000</p>
+            <button>Comprar</button>
+        </section>
+        <section class="product">
+            <h2> Backpack</h2>
+            <img src="mochila.jpg" alt="Produto 5">
+            <p>50.000</p>
+            <button>Comprar</button>
+        </section>
+        <section class="product">
+            <h2>Hankook Cap</h2>
+            <img src="boné 1.png" alt="Produto 6">
+            <p>12.500</p>
+            <button>Comprar</button>
+        </section>
+        <section class="product">
+            <h2>Water Bottle</h2>
+            <img src="Captura de tela 2024-10-21 232137.png" alt="Produto 7">
+            <p>8.000</p>
+            <button>Comprar</button>
+        </section>
+    
+        <!-- Tabela de Ranking -->
+        <div id="table-container">
+            <table id="product-list-table">
+                <thead>
+                    <tr>
+                        <th>Top</th>
+                        <th>Ranking</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Conteúdo preenchido via JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </main>
 
     <footer>
-        <p>© 2024 Sua Empresa. Todos os direitos reservados.</p>
+        <p>© 2024 GamePoints. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="store.js"></script>
+    <script>
+        function generateRandomPoints() {
+            const points = Math.floor(Math.random() * (15000 - 10 + 1)) + 10;
+            document.getElementById('store-header-points').textContent = `Pontos: ${points}`;
+        }
+    
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // troca elementos
+            }
+            return array;
+        }
+    
+        function getRandomTime() {
+            // Gera um número aleatório de 15 a 60
+            const randomSeconds = Math.floor(Math.random() * (60 - 15 + 1)) + 15;
+            const minutes = Math.floor(randomSeconds / 60);
+            const seconds = randomSeconds % 60;
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`; // Formata como MM:SS
+        }
+    
+        function populateTable() {
+            const users = [
+                'Usuário122',
+                'Usuário23',
+                'Usuário4',
+                'Usuário98',
+                'Usuário43',
+                'Usuário989',
+                'Usuário0',
+                'Usuário1',
+                'Usuário634'
+            ];
+    
+            // Adiciona "Você" como o primeiro usuário
+            const fixedUser = 'Você';
+            
+            // Embaralha a lista de usuários restantes
+            const shuffledUsers = shuffleArray(users);
+    
+            // Cria um array para armazenar os tempos gerados
+            const userTimes = [getRandomTime(), ...shuffledUsers.map(() => getRandomTime())];
+    
+            // Cria um array de objetos com usuário e seu tempo
+            const usersWithTimes = [{ name: fixedUser, time: userTimes[0] }, ...shuffledUsers.map((user, index) => ({
+                name: user,
+                time: userTimes[index + 1]
+            }))];
+    
+            // Ordena os usuários com base no tempo, mantendo "Você" em primeiro
+            usersWithTimes.sort((a, b) => {
+                const [minA, secA] = a.time.split(':').map(Number);
+                const [minB, secB] = b.time.split(':').map(Number);
+                return minA * 60 + secA - (minB * 60 + secB); // Compara em segundos
+            });
+    
+            const tableBody = document.querySelector('#product-list-table tbody');
+            tableBody.innerHTML = ''; // Limpa a tabela antes de preenchê-la
+    
+            usersWithTimes.forEach((userWithTime, index) => {
+                const row = document.createElement('tr');
+                const numberCell = document.createElement('td');
+                const itemCell = document.createElement('td');
+                const timeCell = document.createElement('td');
+    
+                numberCell.textContent = index + 1; // Números em ordem crescente
+                itemCell.textContent = userWithTime.name;
+                timeCell.textContent = userWithTime.time; // Tempo ordenado
+    
+                row.appendChild(numberCell);
+                row.appendChild(itemCell);
+                row.appendChild(timeCell); // Adiciona a nova célula à linha
+                tableBody.appendChild(row);
+            });
+        }
+    
+        window.onload = function() {
+            generateRandomPoints();
+            populateTable();
+        };
+    </script>
+    
+    
+    
+    
+    
 </body>
 
 </html>

@@ -6,18 +6,24 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to bottom, #2196F3, #03A9F4);
+    background: linear-gradient(120deg, #fdfbfb, #ebedee);
+
     color: #333;
     line-height: 1.6;
 }
 
 header {
-    background: #76ff03;
+    background: linear-gradient(90deg, #76ff03, #00e676);
     color: white;
-    padding: 20px 0;
+    padding: 15px 0; /* Reduzi o padding para ficar mais minimalista */
     text-align: center;
     position: relative;
+    font-family: 'Helvetica Neue', sans-serif; /* Adicionei uma fonte minimalista */
+    font-size: 24px; /* Tamanho da fonte ajustado para um estilo mais clean */
+    letter-spacing: 1px; /* Espaçamento entre letras para um visual elegante */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adicionei uma sombra sutil para dar profundidade */
 }
+
 
 header img {
     width: 100px;
@@ -46,7 +52,7 @@ main {
 }
 
 .service {
-    background: #003366;
+    background: linear-gradient(135deg, #00C9FF, #92FE9D);
     padding: 20px;
     margin: 15px 0;
     border-radius: 8px;
